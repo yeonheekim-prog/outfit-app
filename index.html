@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="오늘 뭐 입지">
+<title>오늘 뭐 입지</title>
+<style>
+  :root {
+    --bg: #faf7f4;
+    --card: #ffffff;
+    --ink: #3d3733;
+    --sub: #8a7f76;
+    --accent: #c4988f;      /* dusty rose */
+    --accent-soft: #f3e6e2;
+    --sage: #a8b3a0;
+    --line: #eee5de;
+    --radius: 18px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background: var(--bg); color: var(--ink);
+    padding-bottom: 90px;
+    -webkit-text-size-adjust: 100%;
+  }
+  header { padding: 22px 20px 6px; }
+  header h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+  header .date { color: var(--sub); font-size: 14px; margin-top: 4px; }
+
+  .weather {
+    margin: 14px 16px; padding: 18px;
+    background: var(--card); border-radius: var(--radius);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .weather .emoji { font-size: 40px; }
+  .weather .temp { font-size: 26px; font-weight: 700; }
+  .weather .desc { color: var(--sub); font-size: 14px; margin-top: 2px; line-height: 1.5; }
+  .weather .warn { color: #b0736a; font-size: 13px; margin-top: 4px; }
+
+  .section-title { margin: 22px 20px 10px; font-size: 17px; font-weight: 700; }
+  .section-title small { color: var(--sub); font-weight: 400; font-size: 13px; margin-left: 6px; }
+
+  .outfit {
+    margin: 0 16px 14px; padding: 16px;
+    background: var(--card); border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .outfit .badge {
+    display: inline-block; background: var(--accent-soft); color: #a4756c;
+    font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 10px;
+  }
+  .outfit .thumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+  .outfit .thumbs .piece { flex: 0 0 auto; width: 88px; text-align: center; }
+  .outfit .thumbs img {
+    width: 88px; height: 104px; object-fit: cover;
+    border-radius: 12px; border: 1px solid var(--line); background: #f5f0ec;
+  }
+  .outfit .thumbs .pname { font-size: 11px; color: var(--sub); margin-top: 4px; line-height: 1.3; }
+  .outfit .why { font-size: 14px; line-height: 1.6; margin-top: 10px; color: var(--ink); }
+  .outfit .why b { color: #a4756c; }
+
+  .tip {
+    margin: 0 16px 14px; padding: 16px;
+    background: #f2f4ef; border-radius: var(--radius); border: 1px solid #e2e7dc;
+    font-size: 14px; line-height: 1.7;
+  }
+  .tip b { color: #6e7d63; }
+
+  /* closet tab */
+  .cat-title { margin: 20px 20px 8px; font-size: 15px; font-weight: 700; color: var(--sub); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; }
+  .cell { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .cell img { width: 100%; height: 120px; object-fit: cover; display: block; background: #f5f0ec; }
+  .cell .nm { font-size: 12px; font-weight: 600; padding: 6px 8px 2px; line-height: 1.3; }
+  .cell .pt { font-size: 10px; color: var(--sub); padding: 0 8px 8px; line-height: 1.4; }
+
+  .tabs {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    display: flex; background: rgba(255,255,255,0.96);
+    border-top: 1px solid var(--line);
+    padding-bottom: env(safe-area-inset-bottom);
+    backdrop-filter: blur(8px);
+  }
+  .tabs button {
+    flex: 1; padding: 14px 0 12px; border: none; background: none;
+    font-size: 14px; font-weight: 600; color: var(--sub); font-family: inherit;
+  }
+  .tabs button.on { color: var(--accent); }
+  .hidden { display: none; }
+  .loading { text-align: center; color: var(--sub); padding: 40px 20px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="title">오늘 뭐 입지 👗</h1>
+  <div class="date" id="today"></div>
+</header>
+
+<div id="tab-today">
+  <div class="weather" id="weather"><div class="loading" style="padding:6px">날씨 불러오는 중…</div></div>
+  <div class="section-title">오늘의 추천 코디</div>
+  <div id="outfits" class="loading">옷장을 여는 중…</div>
+  <div id="shopping"></div>
+</div>
+
+<div id="tab-closet" class="hidden">
+  <div class="section-title">내 옷장 <small id="count"></small></div>
+  <div id="closet"></div>
+</div>
+
+<div class="tabs">
+  <button id="btn-today" class="on" onclick="showTab('today')">오늘 코디</button>
+  <button id="btn-closet" onclick="showTab('closet')">내 옷장</button>
+</div>
+
+<script>
+const LAT = -27.47, LON = 153.03; // 브리즈번
+let closet = [], wx = null;
+
+document.getElementById('today').textContent =
+  new Date().toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', weekday:'long' }) + ' · 브리즈번';
+
+function showTab(t) {
+  document.getElementById('tab-today').classList.toggle('hidden', t !== 'today');
+  document.getElementById('tab-closet').classList.toggle('hidden', t !== 'closet');
+  document.getElementById('btn-today').classList.toggle('on', t === 'today');
+  document.getElementById('btn-closet').classList.toggle('on', t === 'closet');
+}
+
+const wcode = c => {
+  if (c === 0) return ['☀️','맑음'];
+  if (c <= 2) return ['🌤️','대체로 맑음'];
+  if (c === 3) return ['☁️','흐림'];
+  if (c <= 48) return ['🌫️','안개'];
+  if (c <= 67 || (c >= 80 && c <= 82)) return ['🌧️','비'];
+  if (c <= 77 || (c >= 85 && c <= 86)) return ['🌨️','눈'];
+  return ['⛈️','뇌우'];
+};
+
+async function loadWeather() {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
+    + `&current=temperature_2m,weather_code`
+    + `&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code`
+    + `&timezone=Australia%2FBrisbane`;
+  const r = await fetch(url);
+  const d = await r.json();
+  wx = {
+    now: Math.round(d.current.temperature_2m),
+    max: Math.round(d.daily.temperature_2m_max[0]),
+    min: Math.round(d.daily.temperature_2m_min[0]),
+    rain: d.daily.precipitation_probability_max[0],
+    code: d.daily.weather_code[0]
+  };
+  const [emoji, desc] = wcode(wx.code);
+  const gap = wx.max - wx.min;
+  document.getElementById('weather').innerHTML = `
+    <div class="emoji">${emoji}</div>
+    <div>
+      <div class="temp">${wx.now}°<span style="font-size:15px;color:var(--sub)"> (${wx.min}°~${wx.max}°)</span></div>
+      <div class="desc">${desc} · 비 올 확률 ${wx.rain}%</div>
+      ${wx.rain >= 50 ? '<div class="warn">☔ 우산 챙기세요. 밝은색 하의는 피하는 게 좋아요</div>' : ''}
+      ${gap >= 9 ? '<div class="warn">🧥 일교차가 커요. 겉옷을 꼭 챙기세요</div>' : ''}
+    </div>`;
+}
+
+// 기온 → 필요한 옷 두께 (1 아주얇음 ~ 5 두꺼움)
+function needWarmth(t) {
+  if (t >= 28) return 1;
+  if (t >= 23) return 2;
+  if (t >= 17) return 2.5;
+  if (t >= 12) return 3.5;
+  return 4.5;
+}
+
+const has = (it, f) => it.flags.includes(f);
+const patterned = it => !it.pattern.startsWith('무늬 없음');
+
+function toneScore(it) {
+  if (it.tone === 'soft') return 2;      // 소프트 오톰·서머 경계에 최적
+  if (it.tone === 'neutral') return 1;
+  return -2;                              // 쨍한 색
+}
+
+function buildOutfits() {
+  const need = needWarmth(wx.max);
+  const coldMorning = wx.min <= 14;
+  const needOuter = wx.max <= 21 || coldMorning;
+
+  const bottoms = closet.filter(i => i.cat === '하의');
+  const tops    = closet.filter(i => i.cat === '상의');
+  const outers  = closet.filter(i => i.cat === '겉옷');
+
+  const combos = [];
+  for (const b of bottoms) for (const t of tops) {
+    const outerOptions = needOuter ? outers : [null, ...outers];
+    for (const o of outerOptions) {
+      const pieces = o ? [t, b, o] : [t, b];
+
+      // ── 체형 규칙 (탈락 조건) ──
+      if (has(b, 'leggings') && !has(t, 'long')) continue;        // 레깅스는 긴 상의 필수
+      if (has(t, 'slimfit') && !o) continue;                      // 붙는 상의는 겉옷 필수
+      if (has(t, 'crop') && has(b, 'leggings')) continue;         // 크롭+레깅스 금지
+      if ((has(t, 'crop') || (o && has(o, 'crop'))) && !has(b, 'highwaist') && b.id !== 'b04') continue;
+
+      let s = 0;
+      // 퍼스널컬러
+      s += pieces.reduce((a, p) => a + toneScore(p), 0);
+      // 두께 적합도
+      s -= Math.abs(t.warmth - need) * 1.6;
+      s -= Math.abs(b.warmth - need) * 1.0;
+      if (o) s -= Math.abs(o.warmth - (need + 0.8)) * 1.0;
+      if (needOuter && !o) s -= 3;
+      // 단정·우아 방향
+      s += pieces.filter(p => has(p, 'elegant')).length * 1.2;
+      s -= pieces.filter(p => has(p, 'casual')).length * 0.4;
+      // 패턴은 한 코디에 하나만
+      const np = pieces.filter(patterned).length;
+      if (np >= 2) s -= 3;
+      if (np === 1) s += 0.5;
+      // 하이웨스트 보너스 (상반신 긴 체형 보정)
+      if (has(b, 'highwaist')) s += 1;
+
+      combos.push({ b, t, o, s });
+    }
+  }
+  combos.sort((x, y) => y.s - x.s);
+
+  // 하의가 겹치지 않게 상위 3개
+  const picked = [], usedB = new Set(), usedT = new Set();
+  for (const c of combos) {
+    if (usedB.has(c.b.id) || usedT.has(c.t.id)) continue;
+    picked.push(c); usedB.add(c.b.id); usedT.add(c.t.id);
+    if (picked.length === 3) break;
+  }
+  return picked;
+}
+
+function reason(c) {
+  const r = [];
+  if (has(c.b, 'leggings')) r.push(`<b>${c.t.name}</b>이(가) 엉덩이까지 덮어줘서 레깅스도 부담 없어요`);
+  if (has(c.b, 'highwaist') && !has(c.b, 'leggings')) r.push('하이웨스트라 허리선이 올라가 비율이 좋아 보여요');
+  if (has(c.b, 'wide')) r.push('와이드핏이 허벅지를 자연스럽게 가려줘요');
+  const softs = [c.t, c.b, c.o].filter(p => p && p.tone === 'soft');
+  if (softs.length >= 2) r.push('부드러운 뮤트 톤이라 퍼스널컬러에 잘 맞아요');
+  if (c.o && has(c.o, 'elegant')) r.push(`겉옷은 <b>${c.o.name}</b> — 단정하고 우아한 마무리`);
+  if (c.o && has(c.o, 'vest')) r.push('이너가 팔을 가려주고 조끼로 체온만 더해요');
+  if (has(c.t, 'loose')) r.push('여유 있는 핏이라 배와 팔뚝이 편안하게 가려져요');
+  return r.slice(0, 3).join('. ') + '.';
+}
+
+function renderOutfits() {
+  const picked = buildOutfits();
+  const labels = ['첫 번째 추천', '두 번째 추천', '세 번째 추천'];
+  document.getElementById('outfits').className = '';
+  document.getElementById('outfits').innerHTML = picked.map((c, i) => {
+    const pieces = [c.t, c.b, c.o].filter(Boolean);
+    return `<div class="outfit">
+      <span class="badge">${labels[i]}</span>
+      <div class="thumbs">${pieces.map(p => `
+        <div class="piece"><img src="thumbs/${p.id}.jpg" alt="${p.name}" loading="lazy">
+        <div class="pname">${p.name}</div></div>`).join('')}
+      </div>
+      <div class="why">${reason(c)}</div>
+    </div>`;
+  }).join('');
+
+  // 있으면 좋은 옷 제안
+  const sug = [];
+  if (wx.max <= 21) sug.push('토프·소프트 베이지 색 <b>롱 가디건이나 트렌치코트</b> (팔뚝을 가리면서 우아한 실루엣)');
+  sug.push('세이지 그린이나 더스티 로즈 <b>블라우스</b> (단정한 자리용이 옷장에 아직 없어요)');
+  sug.push('짙은 뮤트 톤 <b>미디 플레어 스커트</b> (얇은 종아리를 살리고 허벅지는 가려줘요)');
+  document.getElementById('shopping').innerHTML = `
+    <div class="section-title">이런 옷이 있으면 좋아요 <small>쇼핑 참고</small></div>
+    <div class="tip">${sug.slice(0, 3).map(s => '· ' + s).join('<br>')}</div>`;
+}
+
+function renderCloset() {
+  const cats = ['상의', '하의', '겉옷'];
+  document.getElementById('count').textContent = `전체 ${closet.length}벌`;
+  document.getElementById('closet').innerHTML = cats.map(cat => {
+    const items = closet.filter(i => i.cat === cat);
+    if (!items.length) return '';
+    return `<div class="cat-title">${cat} (${items.length})</div>
+      <div class="grid">${items.map(i => `
+        <div class="cell">
+          <img src="thumbs/${i.id}.jpg" alt="${i.name}" loading="lazy">
+          <div class="nm">${i.name}</div>
+          <div class="pt">${patterned(i) ? i.pattern : i.color}</div>
+        </div>`).join('')}
+      </div>`;
+  }).join('');
+}
+
+(async function init() {
+  try {
+    const [cRes] = await Promise.all([fetch('closet.json'), loadWeather()]);
+    closet = (await cRes.json()).items;
+    renderCloset();
+    renderOutfits();
+  } catch (e) {
+    document.getElementById('outfits').innerHTML =
+      '<div class="loading">불러오기에 실패했어요. 인터넷 연결을 확인하고 새로고침해 주세요.</div>';
+  }
+})();
+</script>
+</body>
+</html>

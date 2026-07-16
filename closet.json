@@ -1,0 +1,192 @@
+{
+  "updated": "2026-07-16",
+  "items": [
+    {
+      "id": "b01",
+      "cat": "하의",
+      "name": "네이비 골지 와이드 팬츠",
+      "color": "다크 네이비",
+      "tone": "soft",
+      "pattern": "무늬 없음 (잔잔한 세로 골지 조직감)",
+      "warmth": 3,
+      "flags": ["highwaist", "wide", "elegant"],
+      "note": "허벅지를 안 드러내는 와이드핏. 단정한 자리에도 OK"
+    },
+    {
+      "id": "b02",
+      "cat": "하의",
+      "name": "레이스 패턴 레깅스",
+      "color": "블랙 & 화이트",
+      "tone": "neutral",
+      "pattern": "검정 바탕 전체에 흰색 레이스 덩굴·꽃 무늬가 촘촘하게 깔린 패턴",
+      "warmth": 2,
+      "flags": ["highwaist", "leggings"],
+      "note": "레깅스라 엉덩이를 덮는 긴 상의와만 입기"
+    },
+    {
+      "id": "b03",
+      "cat": "하의",
+      "name": "딥 블루 플레어 팬츠",
+      "color": "딥 틸블루 (뿌연 청록빛 남색)",
+      "tone": "soft",
+      "pattern": "무늬 없음",
+      "warmth": 2,
+      "flags": ["highwaist", "leggings"],
+      "note": "밑단은 퍼지지만 허벅지가 붙는 소재 → 긴 상의 권장"
+    },
+    {
+      "id": "b04",
+      "cat": "하의",
+      "name": "미디엄 블루 스트레이트 청바지",
+      "color": "중간 워싱 블루",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (자연스러운 워싱)",
+      "warmth": 3,
+      "flags": [],
+      "note": "스트레이트핏이라 허벅지 부담 없음"
+    },
+    {
+      "id": "t01",
+      "cat": "상의",
+      "name": "화이트 긴팔 기능성 티",
+      "color": "화이트",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (어깨·소매 메쉬 절개)",
+      "warmth": 2,
+      "flags": ["slimfit"],
+      "note": "몸에 붙는 핏 → 단독 말고 겉옷 이너로"
+    },
+    {
+      "id": "t02",
+      "cat": "상의",
+      "name": "더스티 로즈 롱 티셔츠",
+      "color": "더스티 로즈 (뿌연 핑크)",
+      "tone": "soft",
+      "pattern": "무늬 없음 (은은한 멜란지)",
+      "warmth": 2,
+      "flags": ["long"],
+      "note": "퍼스널컬러 최적. 엉덩이 덮는 기장이라 레깅스 짝꿍"
+    },
+    {
+      "id": "t03",
+      "cat": "상의",
+      "name": "레오파드 맨투맨",
+      "color": "그레이 베이지 + 브라운",
+      "tone": "soft",
+      "pattern": "연회색 바탕 전체에 갈색·검정 레오파드(호피) 무늬",
+      "warmth": 3,
+      "flags": ["loose"],
+      "note": "뮤트한 브라운 계열이라 소프트 오톰에 잘 맞음"
+    },
+    {
+      "id": "t04",
+      "cat": "상의",
+      "name": "덤보 프린트 크롭 후드",
+      "color": "그레이",
+      "tone": "neutral",
+      "pattern": "회색 바탕 앞면에 큰 덤보(아기 코끼리) 캐릭터 프린트",
+      "warmth": 3,
+      "flags": ["crop", "casual"],
+      "note": "크롭 기장 → 하이웨스트 하의와만. 편한 날용"
+    },
+    {
+      "id": "t05",
+      "cat": "상의",
+      "name": "차콜 긴팔 탑",
+      "color": "차콜 그레이",
+      "tone": "neutral",
+      "pattern": "무늬 없음",
+      "warmth": 2,
+      "flags": [],
+      "note": "무난한 이너용"
+    },
+    {
+      "id": "t06",
+      "cat": "상의",
+      "name": "머스타드 옐로우 맨투맨",
+      "color": "머스타드 옐로우",
+      "tone": "vivid",
+      "pattern": "무늬 없음 (앞주머니에 minimalist dream 자수)",
+      "warmth": 3,
+      "flags": ["loose"],
+      "note": "쨍한 노랑이라 얼굴이 칙칙해 보일 수 있음 → 가끔만"
+    },
+    {
+      "id": "t07",
+      "cat": "상의",
+      "name": "크림 코듀로이 후드 롱 셔츠",
+      "color": "크림 아이보리",
+      "tone": "soft",
+      "pattern": "무늬 없음 (코듀로이 골 조직)",
+      "warmth": 3,
+      "flags": ["long", "loose"],
+      "note": "엉덩이 덮는 롱 기장 + 여유핏 → 레깅스 짝꿍 1순위"
+    },
+    {
+      "id": "t08",
+      "cat": "상의",
+      "name": "딥 퍼플 니트",
+      "color": "딥 퍼플 (가지색)",
+      "tone": "soft",
+      "pattern": "무늬 없음 (보송한 니트 조직)",
+      "warmth": 4,
+      "flags": ["elegant"],
+      "note": "뮤트한 딥 컬러라 퍼스널컬러에 잘 맞고 단정함"
+    },
+    {
+      "id": "t09",
+      "cat": "상의",
+      "name": "오트밀 로고 후드",
+      "color": "오트밀 베이지",
+      "tone": "soft",
+      "pattern": "무늬 없음 (가슴에 필기체 로고 자수)",
+      "warmth": 3,
+      "flags": ["loose", "casual"],
+      "note": "부드러운 베이지로 데일리용"
+    },
+    {
+      "id": "t10",
+      "cat": "상의",
+      "name": "얼굴 스케치 프린트 맨투맨",
+      "color": "연크림 핑크",
+      "tone": "soft",
+      "pattern": "연크림 바탕 앞면에 연필 스케치풍 여성 얼굴 프린트",
+      "warmth": 3,
+      "flags": ["loose"],
+      "note": "색은 잘 맞고 프린트가 포인트"
+    },
+    {
+      "id": "o01",
+      "cat": "겉옷",
+      "name": "차콜 퍼 후드 조끼",
+      "color": "차콜 그레이",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (인조 모피)",
+      "warmth": 4,
+      "flags": ["vest"],
+      "note": "조끼라 긴팔 위에 겹쳐 입기. 팔은 이너가 가려줌"
+    },
+    {
+      "id": "o02",
+      "cat": "겉옷",
+      "name": "베이지핑크 후드 아노락",
+      "color": "베이지 핑크",
+      "tone": "soft",
+      "pattern": "베이지핑크 스웻 원단에 흰 바탕 가는 스트라이프 셔츠 원단이 후드·밑단에 믹스",
+      "warmth": 3,
+      "flags": ["loose", "casual"],
+      "note": "밑단 스트링으로 기장 조절 가능"
+    },
+    {
+      "id": "o03",
+      "cat": "겉옷",
+      "name": "페일 핑크베이지 울 크롭 자켓",
+      "color": "페일 핑크베이지",
+      "tone": "soft",
+      "pattern": "무늬 없음 (금장 더블 버튼)",
+      "warmth": 4,
+      "flags": ["crop", "elegant"],
+      "note": "퍼스널컬러 최적 + 우아함 담당. 하이웨스트 하의와"
+    }
+  ]
+}
