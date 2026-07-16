@@ -240,6 +240,34 @@ function buildOutfits() {
   return picked;
 }
 
+// 신발·가방: 등록된 게 있으면 골라주고, 없으면 일반 제안 문구
+function pickAcc(cat, elegant) {
+  const items = closet.filter(i => i.cat === cat);
+  if (!items.length) return null;
+  let best = null, bs = -99;
+  for (const it of items) {
+    let s = toneScore(it);
+    if (has(it, 'elegant')) s += elegant ? 1.5 : 0.3;
+    if (has(it, 'casual')) s += elegant ? -0.8 : 0.5;
+    if (wx.rain >= 50 && has(it, 'rainok')) s += 2;
+    if (wx.rain >= 50 && has(it, 'norain')) s -= 3;
+    if (s > bs) { bs = s; best = it; }
+  }
+  return best;
+}
+
+function genericShoe() {
+  if (wx.rain >= 50) return '비 오는 날이라 방수 되는 로퍼나 앵클부츠';
+  if (wx.max >= 26) return '발등이 보이는 샌들이나 뮤트 베이지 슬립온';
+  if (wx.max <= 15) return '토프·브라운 계열 앵클부츠';
+  return '발등이 보이는 플랫슈즈나 로퍼 (다리가 길어 보여요)';
+}
+function genericBag(elegant) {
+  return elegant
+    ? '구조감 있는 토프·그레이지 숄더백'
+    : '가벼운 뮤트 톤 크로스백';
+}
+
 function reason(c) {
   const r = [];
   if (has(c.b, 'leggings')) r.push(`<b>${c.t.name}</b>이(가) 엉덩이까지 덮어줘서 레깅스도 부담 없어요`);
@@ -258,7 +286,14 @@ function renderOutfits() {
   const labels = ['첫 번째 추천', '두 번째 추천', '세 번째 추천'];
   document.getElementById('outfits').className = '';
   document.getElementById('outfits').innerHTML = picked.map((c, i) => {
-    const pieces = [c.t, c.b, c.o].filter(Boolean);
+    const elegant = [c.t, c.b, c.o].filter(Boolean).some(p => has(p, 'elegant'));
+    const shoe = pickAcc('신발', elegant);
+    const bag = pickAcc('가방', elegant);
+    const pieces = [c.t, c.b, c.o, shoe, bag].filter(Boolean);
+    const accText = [
+      shoe ? null : `👟 신발: ${genericShoe()}`,
+      bag ? null : `👜 가방: ${genericBag(elegant)}`
+    ].filter(Boolean).join('<br>');
     return `<div class="outfit">
       <span class="badge">${labels[i]}</span>
       <div class="thumbs">${pieces.map(p => `
@@ -266,6 +301,7 @@ function renderOutfits() {
         <div class="pname">${p.name}</div></div>`).join('')}
       </div>
       <div class="why">${reason(c)}</div>
+      ${accText ? `<div class="why" style="color:var(--sub);font-size:13px">${accText}</div>` : ''}
     </div>`;
   }).join('');
 
@@ -280,7 +316,7 @@ function renderOutfits() {
 }
 
 function renderCloset() {
-  const cats = ['상의', '하의', '겉옷'];
+  const cats = ['상의', '하의', '겉옷', '신발', '가방'];
   document.getElementById('count').textContent = `전체 ${closet.length}벌`;
   document.getElementById('closet').innerHTML = cats.map(cat => {
     const items = closet.filter(i => i.cat === cat);
@@ -293,7 +329,8 @@ function renderCloset() {
           <div class="pt">${patterned(i) ? i.pattern : i.color}</div>
         </div>`).join('')}
       </div>`;
-  }).join('');
+  }).join('') + (closet.some(i => i.cat === '신발') && closet.some(i => i.cat === '가방') ? '' :
+    `<div class="tip" style="margin-top:16px">👟👜 신발·가방 사진을 클로드 코드에 붙여넣고 "등록해줘"라고 하면 코디에 내 신발·가방이 들어가요.</div>`);
 }
 
 (async function init() {
