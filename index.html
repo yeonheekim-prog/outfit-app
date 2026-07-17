@@ -60,6 +60,25 @@
     border-radius: 12px; border: 1px solid var(--line); background: #f5f0ec;
   }
   .outfit .thumbs .pname { font-size: 11px; color: var(--sub); margin-top: 4px; line-height: 1.3; }
+  .swatch {
+    width: 88px; height: 104px; border-radius: 12px; position: relative;
+    display: flex; align-items: center; justify-content: center; font-size: 32px;
+    border: 1.5px dashed rgba(120,100,90,0.45);
+  }
+  .swatch em {
+    position: absolute; top: 5px; right: 5px; font-style: normal;
+    background: rgba(255,255,255,0.9); color: #a4756c;
+    font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 8px;
+  }
+  .shuffle {
+    display: block; margin: 0 auto 14px; padding: 10px 22px;
+    border: 1px solid var(--line); border-radius: 24px; background: var(--card);
+    font-size: 14px; font-weight: 600; color: #a4756c; font-family: inherit;
+  }
+  .sug-row { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 4px; }
+  .sug-row .piece { flex: 0 0 auto; width: 96px; text-align: center; }
+  .sug-row .swatch { width: 96px; height: 96px; }
+  .sug-row .pname { font-size: 11px; color: var(--sub); margin-top: 4px; line-height: 1.35; }
   .outfit .why { font-size: 14px; line-height: 1.6; margin-top: 10px; color: var(--ink); }
   .outfit .why b { color: #a4756c; }
 
@@ -228,14 +247,26 @@ function buildOutfits() {
       combos.push({ b, t, o, s });
     }
   }
+
+  // 날짜(+새로고침 버튼)에 따라 점수에 살짝 변화를 줘서 매일 다른 조합이 나오게
+  const rng = seededRng(new Date().toLocaleDateString('ko-KR') + '#' + shuffleSalt);
+  for (const c of combos) c.s += rng() * 6 - 3;
   combos.sort((x, y) => y.s - x.s);
 
-  // 하의가 겹치지 않게 상위 3개
-  const picked = [], usedB = new Set(), usedT = new Set();
+  // 상의·하의·겉옷이 서로 겹치지 않게 상위 3개
+  const picked = [], usedB = new Set(), usedT = new Set(), usedO = new Set();
   for (const c of combos) {
-    if (usedB.has(c.b.id) || usedT.has(c.t.id)) continue;
-    picked.push(c); usedB.add(c.b.id); usedT.add(c.t.id);
+    if (usedB.has(c.b.id) || usedT.has(c.t.id) || (c.o && usedO.has(c.o.id))) continue;
+    picked.push(c); usedB.add(c.b.id); usedT.add(c.t.id); if (c.o) usedO.add(c.o.id);
     if (picked.length === 3) break;
+  }
+  // 3개를 못 채우면 겉옷 겹침은 허용
+  if (picked.length < 3) {
+    for (const c of combos) {
+      if (picked.includes(c) || usedB.has(c.b.id) || usedT.has(c.t.id)) continue;
+      picked.push(c); usedB.add(c.b.id); usedT.add(c.t.id);
+      if (picked.length === 3) break;
+    }
   }
   return picked;
 }
@@ -256,16 +287,34 @@ function pickAcc(cat, elegant) {
   return best;
 }
 
+// 없는 옷 제안용 (이름 + 색상 견본)
 function genericShoe() {
-  if (wx.rain >= 50) return '비 오는 날이라 방수 되는 로퍼나 앵클부츠';
-  if (wx.max >= 26) return '발등이 보이는 샌들이나 뮤트 베이지 슬립온';
-  if (wx.max <= 15) return '토프·브라운 계열 앵클부츠';
-  return '발등이 보이는 플랫슈즈나 로퍼 (다리가 길어 보여요)';
+  if (wx.rain >= 50) return { emoji: '👢', name: '방수 앵클부츠 (토프 브라운)', hex: '#8b7a6b' };
+  if (wx.max >= 26) return { emoji: '🩴', name: '뮤트 베이지 샌들', hex: '#d9c9b8' };
+  if (wx.max <= 15) return { emoji: '👢', name: '토프 앵클부츠', hex: '#8b7a6b' };
+  return { emoji: '🥿', name: '그레이지 플랫슈즈·로퍼', hex: '#a89a8e' };
 }
 function genericBag(elegant) {
   return elegant
-    ? '구조감 있는 토프·그레이지 숄더백'
-    : '가벼운 뮤트 톤 크로스백';
+    ? { emoji: '👜', name: '구조감 있는 토프 숄더백', hex: '#9b8a7a' }
+    : { emoji: '👜', name: '뮤트 그레이지 크로스백', hex: '#b8aca2' };
+}
+function genericOuter() {
+  if (wx.max <= 11) return { emoji: '🧥', name: '소프트 베이지 롱 코트', hex: '#cbb69c' };
+  return { emoji: '🧥', name: '소프트 베이지 트렌치·롱 가디건', hex: '#cbb69c' };
+}
+
+// 날짜별로 조합이 바뀌도록 하는 씨앗 난수
+let shuffleSalt = 0;
+function seededRng(str) {
+  let h = 1779033703;
+  for (let i = 0; i < str.length; i++) { h = Math.imul(h ^ str.charCodeAt(i), 3432918353); h = h << 13 | h >>> 19; }
+  return function () {
+    h = Math.imul(h ^ h >>> 16, 2246822507);
+    h = Math.imul(h ^ h >>> 13, 3266489909);
+    h ^= h >>> 16;
+    return (h >>> 0) / 4294967296;
+  };
 }
 
 function reason(c) {
@@ -284,35 +333,47 @@ function reason(c) {
 function renderOutfits() {
   const picked = buildOutfits();
   const labels = ['첫 번째 추천', '두 번째 추천', '세 번째 추천'];
+  const needOuter = wx.max <= 21 || wx.min <= 14;
+  const swatchTile = s => `
+    <div class="piece">
+      <div class="swatch" style="background:${s.hex}"><span>${s.emoji}</span><em>있으면 좋아요</em></div>
+      <div class="pname">${s.name}</div>
+    </div>`;
   document.getElementById('outfits').className = '';
   document.getElementById('outfits').innerHTML = picked.map((c, i) => {
     const elegant = [c.t, c.b, c.o].filter(Boolean).some(p => has(p, 'elegant'));
     const shoe = pickAcc('신발', elegant);
     const bag = pickAcc('가방', elegant);
     const pieces = [c.t, c.b, c.o, shoe, bag].filter(Boolean);
-    const accText = [
-      shoe ? null : `👟 신발: ${genericShoe()}`,
-      bag ? null : `👜 가방: ${genericBag(elegant)}`
-    ].filter(Boolean).join('<br>');
+    // 옷장에 없는 자리는 색상 견본 카드로
+    const gaps = [];
+    if (needOuter && !c.o) gaps.push(genericOuter());
+    if (!shoe) gaps.push(genericShoe());
+    if (!bag) gaps.push(genericBag(elegant));
     return `<div class="outfit">
       <span class="badge">${labels[i]}</span>
       <div class="thumbs">${pieces.map(p => `
         <div class="piece"><img src="thumbs/${p.id}.jpg" alt="${p.name}" loading="lazy">
-        <div class="pname">${p.name}</div></div>`).join('')}
+        <div class="pname">${p.name}</div></div>`).join('')}${gaps.map(swatchTile).join('')}
       </div>
       <div class="why">${reason(c)}</div>
-      ${accText ? `<div class="why" style="color:var(--sub);font-size:13px">${accText}</div>` : ''}
     </div>`;
-  }).join('');
+  }).join('') + `<button class="shuffle" onclick="shuffleSalt++; renderOutfits()">🔄 다른 조합 보여줘</button>`;
 
-  // 있으면 좋은 옷 제안
+  // 있으면 좋은 옷 제안 (색상 견본 + 설명)
   const sug = [];
-  if (wx.max <= 21) sug.push('토프·소프트 베이지 색 <b>롱 가디건이나 트렌치코트</b> (팔뚝을 가리면서 우아한 실루엣)');
-  sug.push('세이지 그린이나 더스티 로즈 <b>블라우스</b> (단정한 자리용이 옷장에 아직 없어요)');
-  sug.push('짙은 뮤트 톤 <b>미디 플레어 스커트</b> (얇은 종아리를 살리고 허벅지는 가려줘요)');
+  if (wx.max <= 21) sug.push({ emoji: '🧥', name: '트렌치코트·롱 가디건', hex: '#cbb69c', why: '팔뚝을 가리며 우아한 실루엣' });
+  sug.push({ emoji: '👚', name: '더스티 로즈 블라우스', hex: '#c49a9a', why: '단정한 자리용이 아직 없어요' });
+  sug.push({ emoji: '🧶', name: '세이지 그린 니트', hex: '#a8b3a0', why: '퍼스널컬러 최적 + 여유핏' });
+  sug.push({ emoji: '👗', name: '딥 그레이지 미디 스커트', hex: '#8e8378', why: '종아리는 살리고 허벅지는 가림' });
   document.getElementById('shopping').innerHTML = `
     <div class="section-title">이런 옷이 있으면 좋아요 <small>쇼핑 참고</small></div>
-    <div class="tip">${sug.slice(0, 3).map(s => '· ' + s).join('<br>')}</div>`;
+    <div class="sug-row">${sug.map(s => `
+      <div class="piece">
+        <div class="swatch" style="background:${s.hex}"><span>${s.emoji}</span></div>
+        <div class="pname"><b>${s.name}</b><br>${s.why}</div>
+      </div>`).join('')}
+    </div>`;
 }
 
 function renderCloset() {
