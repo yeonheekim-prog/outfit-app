@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-16",
+  "updated": "2026-07-20",
   "items": [
     {
       "id": "b01",
@@ -9,7 +9,11 @@
       "tone": "soft",
       "pattern": "무늬 없음 (잔잔한 세로 골지 조직감)",
       "warmth": 3,
-      "flags": ["highwaist", "wide", "elegant"],
+      "flags": [
+        "highwaist",
+        "wide",
+        "elegant"
+      ],
       "note": "허벅지를 안 드러내는 와이드핏. 단정한 자리에도 OK"
     },
     {
@@ -20,7 +24,10 @@
       "tone": "neutral",
       "pattern": "검정 바탕 전체에 흰색 레이스 덩굴·꽃 무늬가 촘촘하게 깔린 패턴",
       "warmth": 2,
-      "flags": ["highwaist", "leggings"],
+      "flags": [
+        "highwaist",
+        "leggings"
+      ],
       "note": "레깅스라 엉덩이를 덮는 긴 상의와만 입기"
     },
     {
@@ -31,7 +38,10 @@
       "tone": "soft",
       "pattern": "무늬 없음",
       "warmth": 2,
-      "flags": ["highwaist", "leggings"],
+      "flags": [
+        "highwaist",
+        "leggings"
+      ],
       "note": "밑단은 퍼지지만 허벅지가 붙는 소재 → 긴 상의 권장"
     },
     {
@@ -53,7 +63,9 @@
       "tone": "neutral",
       "pattern": "무늬 없음 (어깨·소매 메쉬 절개)",
       "warmth": 2,
-      "flags": ["slimfit"],
+      "flags": [
+        "slimfit"
+      ],
       "note": "몸에 붙는 핏 → 단독 말고 겉옷 이너로"
     },
     {
@@ -64,7 +76,9 @@
       "tone": "soft",
       "pattern": "무늬 없음 (은은한 멜란지)",
       "warmth": 2,
-      "flags": ["long"],
+      "flags": [
+        "long"
+      ],
       "note": "퍼스널컬러 최적. 엉덩이 덮는 기장이라 레깅스 짝꿍"
     },
     {
@@ -75,7 +89,9 @@
       "tone": "soft",
       "pattern": "연회색 바탕 전체에 갈색·검정 레오파드(호피) 무늬",
       "warmth": 3,
-      "flags": ["loose"],
+      "flags": [
+        "loose"
+      ],
       "note": "뮤트한 브라운 계열이라 소프트 오톰에 잘 맞음"
     },
     {
@@ -86,7 +102,10 @@
       "tone": "neutral",
       "pattern": "회색 바탕 앞면에 큰 덤보(아기 코끼리) 캐릭터 프린트",
       "warmth": 3,
-      "flags": ["crop", "casual"],
+      "flags": [
+        "crop",
+        "casual"
+      ],
       "note": "크롭 기장 → 하이웨스트 하의와만. 편한 날용"
     },
     {
@@ -108,7 +127,9 @@
       "tone": "vivid",
       "pattern": "무늬 없음 (앞주머니에 minimalist dream 자수)",
       "warmth": 3,
-      "flags": ["loose"],
+      "flags": [
+        "loose"
+      ],
       "note": "쨍한 노랑이라 얼굴이 칙칙해 보일 수 있음 → 가끔만"
     },
     {
@@ -119,7 +140,10 @@
       "tone": "soft",
       "pattern": "무늬 없음 (코듀로이 골 조직)",
       "warmth": 3,
-      "flags": ["long", "loose"],
+      "flags": [
+        "long",
+        "loose"
+      ],
       "note": "엉덩이 덮는 롱 기장 + 여유핏 → 레깅스 짝꿍 1순위"
     },
     {
@@ -130,7 +154,9 @@
       "tone": "soft",
       "pattern": "무늬 없음 (보송한 니트 조직)",
       "warmth": 4,
-      "flags": ["elegant"],
+      "flags": [
+        "elegant"
+      ],
       "note": "뮤트한 딥 컬러라 퍼스널컬러에 잘 맞고 단정함"
     },
     {
@@ -141,7 +167,10 @@
       "tone": "soft",
       "pattern": "무늬 없음 (가슴에 필기체 로고 자수)",
       "warmth": 3,
-      "flags": ["loose", "casual"],
+      "flags": [
+        "loose",
+        "casual"
+      ],
       "note": "부드러운 베이지로 데일리용"
     },
     {
@@ -152,7 +181,9 @@
       "tone": "soft",
       "pattern": "연크림 바탕 앞면에 연필 스케치풍 여성 얼굴 프린트",
       "warmth": 3,
-      "flags": ["loose"],
+      "flags": [
+        "loose"
+      ],
       "note": "색은 잘 맞고 프린트가 포인트"
     },
     {
@@ -163,7 +194,9 @@
       "tone": "neutral",
       "pattern": "무늬 없음 (인조 모피)",
       "warmth": 4,
-      "flags": ["vest"],
+      "flags": [
+        "vest"
+      ],
       "note": "조끼라 긴팔 위에 겹쳐 입기. 팔은 이너가 가려줌"
     },
     {
@@ -174,7 +207,10 @@
       "tone": "soft",
       "pattern": "베이지핑크 스웻 원단에 흰 바탕 가는 스트라이프 셔츠 원단이 후드·밑단에 믹스",
       "warmth": 3,
-      "flags": ["loose", "casual"],
+      "flags": [
+        "loose",
+        "casual"
+      ],
       "note": "밑단 스트링으로 기장 조절 가능"
     },
     {
@@ -185,8 +221,356 @@
       "tone": "soft",
       "pattern": "무늬 없음 (금장 더블 버튼)",
       "warmth": 4,
-      "flags": ["crop", "elegant"],
+      "flags": [
+        "crop",
+        "elegant"
+      ],
       "note": "퍼스널컬러 최적 + 우아함 담당. 하이웨스트 하의와"
+    },
+    {
+      "id": "o04",
+      "cat": "겉옷",
+      "name": "카키 스팽글 가디건",
+      "color": "다크 카키 (올리브)",
+      "tone": "soft",
+      "pattern": "짙은 카키 바탕 전체에 같은 색 스팽글이 촘촘히 붙어 은은하게 반짝임, 자개 단추",
+      "warmth": 3,
+      "flags": [
+        "elegant"
+      ],
+      "note": "저녁 모임·특별한 날 포인트 가디건. 팔뚝도 가려줌"
+    },
+    {
+      "id": "t11",
+      "cat": "상의",
+      "name": "네이비 스트라이프 보트넥 니트",
+      "color": "화이트 & 네이비",
+      "tone": "neutral",
+      "pattern": "흰 바탕에 굵은 네이비 가로 스트라이프",
+      "warmth": 3,
+      "flags": [
+        "loose"
+      ],
+      "note": "프렌치 무드. 청바지와 잘 어울림"
+    },
+    {
+      "id": "t12",
+      "cat": "상의",
+      "name": "라이트블루 스팽글 니트",
+      "color": "라이트 페리윙클 블루",
+      "tone": "soft",
+      "pattern": "라이트블루 바탕 전체에 잔잔한 은색 스팽글이 반짝임",
+      "warmth": 3,
+      "flags": [
+        "elegant"
+      ],
+      "note": "소프트 서머 쪽에 잘 맞는 뿌연 블루"
+    },
+    {
+      "id": "t13",
+      "cat": "상의",
+      "name": "블랙 큐빅 골지 터틀넥",
+      "color": "블랙",
+      "tone": "neutral",
+      "pattern": "검정 골지 바탕에 큐빅·진주 장식이 점점이 규칙적으로 배치",
+      "warmth": 3,
+      "flags": [
+        "slimfit",
+        "elegant"
+      ],
+      "note": "몸에 붙는 골지 → 가디건·자켓 이너로"
+    },
+    {
+      "id": "t14",
+      "cat": "상의",
+      "name": "크림 스터드 니트",
+      "color": "크림",
+      "tone": "soft",
+      "pattern": "크림 바탕 전체에 금속 스터드가 촘촘한 격자로 반짝임",
+      "warmth": 3,
+      "flags": [
+        "loose",
+        "elegant"
+      ],
+      "note": "여유핏 + 은은한 반짝임. 단정한 자리 OK"
+    },
+    {
+      "id": "t15",
+      "cat": "상의",
+      "name": "페일 피치 시어 니트",
+      "color": "페일 피치 (연살구)",
+      "tone": "soft",
+      "pattern": "무늬 없음 (얇고 살짝 비치는 니트)",
+      "warmth": 2,
+      "flags": [
+        "loose"
+      ],
+      "note": "퍼스널컬러 최적. 얇아서 환절기용"
+    },
+    {
+      "id": "t16",
+      "cat": "상의",
+      "name": "블랙 프릴넥 니트",
+      "color": "블랙",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (목선 잔잔한 프릴 디테일)",
+      "warmth": 2,
+      "flags": [
+        "elegant"
+      ],
+      "note": "DKNY. 단정한 자리 이너로 좋음"
+    },
+    {
+      "id": "t17",
+      "cat": "상의",
+      "name": "그레이 골지 후드 탑",
+      "color": "그레이",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (잔골지, 흐르는 얇은 소재)",
+      "warmth": 2,
+      "flags": [
+        "casual"
+      ],
+      "note": "편한 날 데일리·이너용"
+    },
+    {
+      "id": "o05",
+      "cat": "겉옷",
+      "name": "크림 블랙트림 가디건 자켓",
+      "color": "크림 & 블랙 배색",
+      "tone": "soft",
+      "pattern": "크림 바탕에 목선·밑단 검정 배색 라인 + 금장 단추",
+      "warmth": 3,
+      "flags": [
+        "elegant",
+        "crop"
+      ],
+      "note": "트위드 자켓 느낌. 단정한 자리 1순위, 하이웨스트 하의와"
+    },
+    {
+      "id": "t18",
+      "cat": "상의",
+      "name": "네이비 클래스프 후드",
+      "color": "딥 네이비",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (가슴 금속 클래스프 여밈 포인트)",
+      "warmth": 4,
+      "flags": [
+        "loose",
+        "casual"
+      ],
+      "note": "도톰해서 한겨울 데일리"
+    },
+    {
+      "id": "o06",
+      "cat": "겉옷",
+      "name": "그레이 니트 조끼",
+      "color": "미디엄 그레이",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (터틀넥 민소매 니트)",
+      "warmth": 3,
+      "flags": [
+        "vest"
+      ],
+      "note": "민소매 → 단독 말고 긴팔 위에 겹쳐 입기 (팔뚝 가림)"
+    },
+    {
+      "id": "t19",
+      "cat": "상의",
+      "name": "아이보리 케이블 니트",
+      "color": "아이보리",
+      "tone": "soft",
+      "pattern": "전체 꽈배기(케이블) 짜임",
+      "warmth": 4,
+      "flags": [
+        "loose"
+      ],
+      "note": "포근한 겨울 니트. 청바지·와이드팬츠와"
+    },
+    {
+      "id": "o07",
+      "cat": "겉옷",
+      "name": "블랙&화이트 멜란지 가디건",
+      "color": "흑백 멜란지",
+      "tone": "neutral",
+      "pattern": "검정·흰색 실이 섞인 소금후추 멜란지 짜임, 단추 여밈",
+      "warmth": 4,
+      "flags": [
+        "loose"
+      ],
+      "note": "도톰한 겨울 가디건"
+    },
+    {
+      "id": "t20",
+      "cat": "상의",
+      "name": "카멜 포켓 니트",
+      "color": "카멜 베이지",
+      "tone": "soft",
+      "pattern": "무늬 없음 (앞면 큰 주머니 2개)",
+      "warmth": 4,
+      "flags": [
+        "loose"
+      ],
+      "note": "소프트 오톰 최적 컬러. 주머니가 배 쪽 시선 분산"
+    },
+    {
+      "id": "t21",
+      "cat": "상의",
+      "name": "차콜 니트",
+      "color": "차콜 그레이",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (보송한 니트 조직)",
+      "warmth": 4,
+      "flags": [
+        "loose"
+      ],
+      "note": "무난한 겨울 데일리"
+    },
+    {
+      "id": "o08",
+      "cat": "겉옷",
+      "name": "네이비 집업 후드",
+      "color": "네이비",
+      "tone": "neutral",
+      "pattern": "무늬 없음",
+      "warmth": 3,
+      "flags": [
+        "casual"
+      ],
+      "note": "편한 날 겉옷. 산책·등하원용"
+    },
+    {
+      "id": "o09",
+      "cat": "겉옷",
+      "name": "네이비 후드 아노락",
+      "color": "네이비",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (등판에 흰색 필기체 자수)",
+      "warmth": 3,
+      "flags": [
+        "casual",
+        "loose"
+      ],
+      "note": "바람막이 느낌. 야외 활동용"
+    },
+    {
+      "id": "t22",
+      "cat": "상의",
+      "name": "세이지 그린 후드 니트",
+      "color": "세이지 그린",
+      "tone": "soft",
+      "pattern": "무늬 없음 (끈 달린 후드)",
+      "warmth": 3,
+      "flags": [
+        "loose"
+      ],
+      "note": "퍼스널컬러 최적. 여유핏이라 체형 커버도 됨"
+    },
+    {
+      "id": "t23",
+      "cat": "상의",
+      "name": "그린 스트라이프 니트",
+      "color": "브라이트 그린 & 블랙",
+      "tone": "vivid",
+      "pattern": "밝은 초록 바탕에 검정 가로 스트라이프, 어깨 단추 포인트",
+      "warmth": 3,
+      "flags": [
+        "slimfit"
+      ],
+      "note": "쨍한 초록 + 붙는 핏 → 겉옷과 함께 가끔"
+    },
+    {
+      "id": "t24",
+      "cat": "상의",
+      "name": "라일락 비즈카라 니트",
+      "color": "라일락",
+      "tone": "soft",
+      "pattern": "무늬 없음 (카라에 꽃 모양 비즈 장식)",
+      "warmth": 3,
+      "flags": [
+        "elegant"
+      ],
+      "note": "소프트 서머 쪽 컬러. 카라 장식이 얼굴 쪽 포인트"
+    },
+    {
+      "id": "t25",
+      "cat": "상의",
+      "name": "페일핑크 니트 카라 셔츠",
+      "color": "페일 핑크",
+      "tone": "soft",
+      "pattern": "무늬 없음 (카라 + 단추 여밈 니트)",
+      "warmth": 3,
+      "flags": [
+        "elegant"
+      ],
+      "note": "단정한 자리용. 뿌연 핑크라 퍼스널컬러 OK"
+    },
+    {
+      "id": "t26",
+      "cat": "상의",
+      "name": "아이보리 벨벳 퍼프소매 탑",
+      "color": "아이보리",
+      "tone": "soft",
+      "pattern": "은은한 광택 벨벳 원단, 소매 중간이 봉긋한 퍼프 소매",
+      "warmth": 2,
+      "flags": [
+        "elegant"
+      ],
+      "note": "퍼프 소매가 팔뚝을 자연스럽게 가려줌"
+    },
+    {
+      "id": "t27",
+      "cat": "상의",
+      "name": "코랄 니트",
+      "color": "코랄 오렌지",
+      "tone": "vivid",
+      "pattern": "무늬 없음",
+      "warmth": 4,
+      "flags": [
+        "loose"
+      ],
+      "note": "쨍한 편이라 얼굴에서 멀게 입거나 가끔만"
+    },
+    {
+      "id": "t28",
+      "cat": "상의",
+      "name": "딥그린 반팔 니트",
+      "color": "딥 그린",
+      "tone": "soft",
+      "pattern": "무늬 없음 (하프넥 반팔)",
+      "warmth": 2,
+      "flags": [
+        "shortsleeve",
+        "elegant"
+      ],
+      "note": "반팔이라 팔뚝 노출 → 가디건·자켓과 함께"
+    },
+    {
+      "id": "t29",
+      "cat": "상의",
+      "name": "화이트 레드트림 프릴 니트",
+      "color": "화이트 & 레드 배색",
+      "tone": "neutral",
+      "pattern": "흰 골지 바탕, 어깨 프릴과 밑단에 빨간 배색 라인",
+      "warmth": 2,
+      "flags": [
+        "slimfit",
+        "elegant"
+      ],
+      "note": "붙는 골지 → 겉옷 이너로. 프릴이 어깨 포인트"
+    },
+    {
+      "id": "t30",
+      "cat": "상의",
+      "name": "블랙 러플 니트",
+      "color": "블랙",
+      "tone": "neutral",
+      "pattern": "무늬 없음 (소매 전체 러플 + 흰색 스티치 라인)",
+      "warmth": 2,
+      "flags": [
+        "elegant"
+      ],
+      "note": "러플 소매가 팔뚝 라인을 가려줌. 저녁 자리 OK"
     }
   ]
 }

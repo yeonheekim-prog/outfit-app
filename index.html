@@ -223,6 +223,7 @@ function buildOutfits() {
       // ── 체형 규칙 (탈락 조건) ──
       if (has(b, 'leggings') && !has(t, 'long')) continue;        // 레깅스는 긴 상의 필수
       if (has(t, 'slimfit') && !o) continue;                      // 붙는 상의는 겉옷 필수
+      if (has(t, 'shortsleeve') && !o) continue;                  // 반팔은 팔뚝 가릴 겉옷 필수
       if (has(t, 'crop') && has(b, 'leggings')) continue;         // 크롭+레깅스 금지
       if ((has(t, 'crop') || (o && has(o, 'crop'))) && !has(b, 'highwaist') && b.id !== 'b04') continue;
 
