@@ -397,7 +397,7 @@ function renderCloset() {
 
 (async function init() {
   try {
-    const [cRes] = await Promise.all([fetch('closet.json'), loadWeather()]);
+    const [cRes] = await Promise.all([fetch('closet.json', { cache: 'no-store' }), loadWeather()]);
     closet = (await cRes.json()).items;
     renderCloset();
     renderOutfits();
